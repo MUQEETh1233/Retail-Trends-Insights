@@ -6,6 +6,8 @@
 1.PROBLEM STATEMENT
 
 Retail businesses face challenges in understanding customer preferences, managing inventory, and staying competitive in a rapidly evolving market. The vast amount of shopping data from both in-store and online channels often remains underutilized due to the complexity of analysis and the lack of effective tools for extracting actionable insights. Identifying emerging trends, predicting customer behavior, and optimizing marketing strategies are critical yet challenging tasks that require advanced data analytics solutions.
+
+
 2. OBJECTIVES
 
 Major Objectives
