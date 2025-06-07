@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f3f6f9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+
+        .logout {
+            float: right;
+            font-size: 14px;
+            margin-top: -30px;
+        }
+
+        .dataset-card {
+            background-color: #fdfdfd;
+            border: 1px solid #e1e1e1;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .dataset-card h3 {
+            margin-top: 0;
+            color: #34495e;
+        }
+
+        .dataset-card a.download-link {
+            display: inline-block;
+            margin: 10px 0;
+            color: white;
+            background: #3498db;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .dataset-card input[type="url"],
+        .dataset-card textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .dataset-card button {
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .dataset-card button:hover {
+            background-color: #27ae60;
+        }
+
+        p {
+            text-align: center;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome Admin</h2>
+        <div class="logout"><a href="/logout">Logout</a></div>
+
+        {% if datasets %}
+            {% for name, data in datasets.items() %}
+                <div class="dataset-card">
+                    <h3>{{ name }}</h3>
+                    <a href="/download/{{ data.filename }}" class="download-link">Download Dataset</a>
+                    <form method="POST" action="/admin/update/{{ name }}">
+                        <label for="power_link_{{ name }}">Power BI Report Link</label>
+                        <input type="url" name="power_link" id="power_link_{{ name }}" placeholder="Power BI Report Link" value="{{ data.link }}" required>
+
+                        <label for="suggestion_{{ name }}">Suggestions and Strategies</label>
+                        <textarea name="suggestion" id="suggestion_{{ name }}" placeholder="Suggestions and Strategies" required>{{ data.suggestions }}</textarea>
+
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No datasets available yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

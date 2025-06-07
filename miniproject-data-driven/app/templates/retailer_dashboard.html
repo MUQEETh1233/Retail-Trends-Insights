@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Retailer Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .logout {
+            text-align: right;
+            margin-top: -40px;
+        }
+
+        .logout a {
+            color: #c0392b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        form {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+
+        .success {
+            text-align: center;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            margin-top: 40px;
+            color: #34495e;
+        }
+
+        .dataset-card {
+            background-color: #fdfdfd;
+            border: 1px solid #e1e1e1;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .dataset-card p {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .dataset-card a {
+            display: inline-block;
+            margin: 5px 10px 5px 0;
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .dataset-card a:hover {
+            background-color: #2980b9;
+        }
+
+        .dataset-card p:nth-of-type(2) {
+            color: #7f8c8d;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logout">
+            <a href="/logout">Logout</a>
+        </div>
+        <h2>Welcome {{ username }}</h2>
+
+        <form method="POST" action="/upload_sales" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required><br>
+            <button type="submit">Upload Sales Dataset</button>
+        </form>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="success">{{ messages[0] }}</div>
+            {% endif %}
+        {% endwith %}
+
+        <h3>Your Analyzed Datasets</h3>
+        {% for name, data in datasets.items() %}
+            <div class="dataset-card">
+                <p>{{ name }}</p>
+                {% if data.link %}
+                    <a href="{{ data.link }}" target="_blank">📊 View Power BI Report</a>
+                    <a href="/retailer/view/{{ name }}">📝 View Suggestions</a>
+                {% else %}
+                    <p>⏳ Awaiting Admin Review</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

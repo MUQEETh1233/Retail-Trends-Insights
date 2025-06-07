@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Suggestions for {{ name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f7f9fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            background: #ffffff;
+            margin: 50px auto;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 30px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .top-bar a {
+            text-decoration: none;
+            background: #1a73e8;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .top-bar a:hover {
+            background: #155ab6;
+        }
+
+        .card {
+            background: #f1f3f6;
+            border-left: 6px solid #1a73e8;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .card p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .card a {
+            color: #1a73e8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        h3 {
+            margin-top: 30px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <a href="/retailer">&larr; Back to Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <h2>📊 Suggestions for <em>{{ name }}</em></h2>
+
+        <div class="card">
+            <p><strong>Power BI Report:</strong> <a href="{{ data.link }}" target="_blank">View Report</a></p>
+        </div>
+
+        <div class="card">
+            <h3>Admin Suggestions:</h3>
+            <div id="show_suggestion_{{ name }}" style="white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+                {{ data.suggestions }}
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
