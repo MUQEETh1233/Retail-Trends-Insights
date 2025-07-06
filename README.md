@@ -21,7 +21,7 @@ Minor Objectives
 *Data Integration: Combining data from multiple stores of in-store purchases, and customer feedback, is necessary for a holistic analysis. This step ensures that all relevant data points are merged into a unified dataset, reducing data silos and enhancing the comprehensiveness of shopping trend analysis.  
 *Basic Trend Identification: While not as advanced as predictive analytics, basic trend identification involves recognizing frequently purchased products, peak shopping seasons, and shifts in customer preferences. This provides businesses with preliminary insights into shopping behaviors without requiring complex forecasting models.
 *Simple Predictive Insights: Based on historical data, simple predictive analysis can provide rough estimates of future sales and demand. While this is not a fully developed machine learning model, it can offer directional insights that help businesses prepare for upcoming trends.  
-*Basic Dashboard Development: A simple, user-friendly dashboard helps present key shopping metrics in an accessible format. This includes displaying sales trends, customer demographics, and product demand patterns. While not highly interactive, these dashboards provide essential insights for businesses without requiring advanced data visualization skills.
+*Basic Dashboard Development: A simple, user-friendly dashboard helps present key shopping metrics in an accessible format. This includes displaying sales trends, customer demographics, and product demand patterns. 
 
 3. METHODOLOGY (with Flowchart)
 
